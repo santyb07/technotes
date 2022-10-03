@@ -1,15 +1,16 @@
-import dotenv from "dotenv"
-import express from "express"
-import path from "path"
-import { logger } from "./middleware/logger.js";
-import { errorHandler } from "./middleware/errorHandler.js";
-// import root from "./routes/root.js"
-import cors from "cors"
-import cookieParser from "cookie-parser";
-import { corsOptions } from "./config/corsOptions.js";
-import {connectDB} from "./config/dbConn.js"
-import {logEvents} from "./middleware/logger.js"
-import mongoose from "mongoose";
+const dotenv = require("dotenv")
+const express = require("express")
+const path = require('path')
+const errorHandler = require("./middleware/errorHandler")
+const root = require("./routes/root")
+const userRoutes = require("./routes/userRoutes")
+const cors = require('cors')
+const cookieParser = require('cookie-parser')
+const corsOptions = require('./config/corsOptions')
+const connectDB = require("./config/dbConn")
+const { logger, logEvents } = require('./middleware/logger')
+const mongoose = require("mongoose")
+
 
 dotenv.config();
 
@@ -26,7 +27,9 @@ app.use(express.json())
 
 app.use(cookieParser())
 
-// app.use('/',root);
+app.use('/',root);
+app.use('/users',userRoutes)
+
 
 app.use(errorHandler)
 
