@@ -29,9 +29,9 @@ app.use(express.json())
 app.use(cookieParser())
 
 app.use('/',root);
+app.use('/auth',require('./routes/authRoutes'))
 app.use('/users',userRoutes)
 app.use('/notes',noteRoutes)
-
 
 app.use(errorHandler)
 
