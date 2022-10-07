@@ -4,6 +4,7 @@ const path = require('path')
 const errorHandler = require("./middleware/errorHandler")
 const root = require("./routes/root")
 const userRoutes = require("./routes/userRoutes")
+const noteRoutes = require("./routes/noteRoutes")
 const cors = require('cors')
 const cookieParser = require('cookie-parser')
 const corsOptions = require('./config/corsOptions')
@@ -29,6 +30,7 @@ app.use(cookieParser())
 
 app.use('/',root);
 app.use('/users',userRoutes)
+app.use('/notes',noteRoutes)
 
 
 app.use(errorHandler)
